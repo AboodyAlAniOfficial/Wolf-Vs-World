@@ -1,9 +1,6 @@
 package entity;
 
-import Main.GamePanel;
-import Main.KeyHandler;
-import Main.UI;
-import Main.UtilityTool;
+import Main.*;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -55,8 +52,12 @@ public class Player extends Entity{
     public void setDefaultValues(){
         worldX = gp.tileSize * 23;
         worldY = gp.tileSize * 21;
-        speed = 10;
+        speed = 5;
         direction = "down";
+
+        //Player Stats
+        maxLife = 6;
+        life = maxLife;
     }
 
     public void update(){
@@ -83,6 +84,10 @@ public class Player extends Entity{
             //CHECK NPC COLLISION
             int npcIndex = gp.cCheker.checkEntity(this, gp.npc);
             interactNPC(npcIndex);
+
+            //CHECK EVENTS
+            gp.eHandler.checkEvent();
+            gp.keyH.enterPressed = false;
 
             //IF COLLISION IS FALSE, PLAYER CAN MOVE
             if(collisionOn == false){
@@ -132,7 +137,6 @@ public class Player extends Entity{
                 gp.npc[i].speak();
             }
         }
-        gp.keyH.enterPressed = false;
 
     }
     public void draw(Graphics2D g2){

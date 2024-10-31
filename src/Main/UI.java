@@ -1,6 +1,8 @@
 package Main;
 
+import object.OBJ_Heart;
 import object.OBJ_Key;
+import object.SuperObject;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -14,6 +16,7 @@ public class UI {
     GamePanel gp;
     Graphics2D g2;
     Font arial_40, arial_80B, lgc;
+    BufferedImage heart_full, heart_half, heart_blank;
 //    BufferedImage keyImage;
     public boolean messageOn = false;
     public String message = "";
@@ -41,6 +44,12 @@ public class UI {
         }
 //        OBJ_Key key = new OBJ_Key(gp);
 //        keyImage = key.image;
+
+        //CREATING HUD OBJECTS
+        SuperObject heart = new OBJ_Heart(gp);
+        heart_full = heart.image;
+        heart_half = heart.image2;
+        heart_blank = heart.image3;
     }
 
     public void showMessage(String text){
@@ -62,15 +71,56 @@ public class UI {
         //PLAY STATE
         if(gp.gameState == gp.playState) {
             //DO PLAYSTATE STUFF LATER
+            drawPlayerLife();
         }
         //PAUSE STATE
         if(gp.gameState == gp.pauseState){
             drawPauseScreen();
+            drawPlayerLife();
         }
         //DIALOGUE STATE
         if(gp.gameState == gp.dialogueState){
             drawDialogueScreen();
+            drawPlayerLife();
         }
+
+    }
+
+    public void drawPlayerLife(){
+
+        // DEBUGGING: gp.player.life = 3;
+
+
+        int x = gp.tileSize/2;
+        int y = gp.tileSize/2;
+        int i = 0;
+
+        //This draws the blank hearts(i.e. max life)
+        while(i < gp.player.maxLife/2){
+            g2.drawImage(heart_blank,x,y, null);
+            i++;
+            x+= gp.tileSize;
+        }
+
+        x = gp.tileSize/2;
+        y = gp.tileSize/2;
+        i = 0;
+
+        //This is where we draw the current hearts(kind of like coloring in the blank hearts)
+        while (i < gp.player.life){
+            //This will draw a half heart and is designed to be drawn over
+            g2.drawImage(heart_half,x,y,null);
+            i++;
+
+            if(i < gp.player.life){
+                //if life is an even number it will draw a full heart
+                g2.drawImage(heart_full,x ,y,null);
+            }
+            i++;
+            x += gp.tileSize;
+
+        }
+
 
     }
     public void drawTitleScreen(){
