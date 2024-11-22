@@ -1,22 +1,18 @@
 package object;
 
 import Main.GamePanel;
+import entity.Entity;
 
 import javax.imageio.ImageIO;
 
-
-
-public class OBJ_Key extends SuperObject{
-    GamePanel gp;
+public class OBJ_Key extends Entity {
 
     public OBJ_Key(GamePanel gp){
+        super(gp);
         name = "Key";
-        try{
-            image = ImageIO.read(getClass().getResourceAsStream("/objects/key.png"));
-            uTool.scaleImage(image, gp.tileSize, gp.tileSize);
+        down1 = setup("/objects/key", gp.tileSize, gp.tileSize);
+        description = "[" + name +"]\nShould open doors";
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
     }
 }
