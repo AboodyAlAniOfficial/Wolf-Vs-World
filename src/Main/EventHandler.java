@@ -10,6 +10,9 @@ public class EventHandler {
     int previousEventX, previousEventY;
     boolean cantTouchEvent = true;
 
+    //Transition Stuff
+    int tempMap, tempCol, tempRow;
+
     public EventHandler(GamePanel gp){
         this.gp = gp;
 
@@ -124,12 +127,16 @@ public class EventHandler {
 
     public void teleport(int map, int col, int row){
 
-        gp.ui.currentDialogue = "TELEPORT";
-        gp.currentMap = map;
-        gp.player.worldX = gp.tileSize*col;
-        gp.player.worldY = gp.tileSize*row;
-        previousEventX = gp.player.worldX;
-        previousEventY = gp.player.worldY;
+        gp.gameState = gp.transitionState;
+        tempMap = map;
+        tempCol = col;
+        tempRow = row;
+
+//      gp.currentMap = map;
+//        gp.player.worldX = gp.tileSize*col;
+//        gp.player.worldY = gp.tileSize*row;
+//        previousEventX = gp.player.worldX;
+//        previousEventY = gp.player.worldY;
         cantTouchEvent = false;
     }
 }

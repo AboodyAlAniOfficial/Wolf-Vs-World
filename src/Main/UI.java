@@ -34,6 +34,7 @@ public class UI {
     public int slotCol = 0;
     public int slotRow = 0;
     int subState = 0;
+    int transitionCounter = 0;
 
     //Inert objects
     //DecimalFormat dFormat = new DecimalFormat("#0.00");
@@ -108,6 +109,9 @@ public class UI {
 //        //Death state
         if (gp.gameState == gp.deathState) {
             drawDeathScreen();
+        }
+        if(gp.gameState == gp.transitionState){
+            drawTransitionScreen();
         }
 
     }
@@ -448,6 +452,23 @@ public class UI {
 
     }
 
+    public void drawTransitionScreen(){
+
+        transitionCounter++;
+        g2.setColor(new Color(0,0,0,transitionCounter*5));
+        g2.fillRect(0,0,gp.screenWidth,gp.screenHeight);
+
+        if(transitionCounter == 50){
+            transitionCounter = 0;
+            gp.gameState = gp.playState;
+            gp.currentMap = gp.eHandler.tempMap;
+            gp.player.worldX = gp.tileSize * gp.eHandler.tempCol;
+            gp.player.worldY = gp.tileSize * gp.eHandler.tempRow;
+            gp.eHandler.previousEventX = gp.player.worldX;
+            gp.eHandler.previousEventY = gp.player.worldY;
+        }
+    }
+
     public void options_Top(int frameX, int frameY) {
         int textX;
         int textY;
@@ -713,6 +734,8 @@ public class UI {
 //        }
 
     }
+
+
 
     public int getItemIndexOnSlot() {
 //        0 1 2 3 4
