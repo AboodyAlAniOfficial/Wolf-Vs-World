@@ -106,9 +106,9 @@ public class UI {
             drawOptionScreen();
         }
 //        //Death state
-//        if (gp.gameState == gp.deathState) {
-//            drawDeathScreen();
-//        }
+        if (gp.gameState == gp.deathState) {
+            drawDeathScreen();
+        }
 
     }
 
@@ -687,12 +687,30 @@ public class UI {
         int x, y;
         String text = "DEATH";
         g2.setFont(g2.getFont().deriveFont(Font.BOLD, 150F));
-            g2.setColor(Color.white);
-            x = getXforCenteredText(text);
-            y = gp.tileSize * 4;
-            g2.drawString(text, x, y);
-            g2.setColor(Color.red);
-            g2.drawString(text, x-1, y-1);
+        g2.setColor(Color.white);
+        x = getXforCenteredText(text);
+        y = gp.tileSize * 4;
+        g2.drawString(text, x, y);
+        g2.setColor(Color.red);
+        g2.drawString(text, x - 1, y - 1);
+
+//        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 50F));
+//        text = "Continue";
+//        x = getXforCenteredText(text);
+//        y += gp.tileSize * 4;
+//        g2.drawString(text,x,y);
+//        if(commandNum == 0){
+//            g2.drawString(">",x-40,y);
+//        }
+//
+//        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 50F));
+//        text = "Quit";
+//        x = getXforCenteredText(text);
+//        y += gp.tileSize ;
+//        g2.drawString(text,x,y);
+//        if(commandNum == 1){
+//            g2.drawString(">",x-40,y);
+//        }
 
     }
 

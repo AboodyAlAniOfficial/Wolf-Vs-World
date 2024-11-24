@@ -48,6 +48,9 @@ public class KeyHandler implements KeyListener {
     else if(gp.gameState == gp.optionsState){
             optionsState(code);
         }
+    else if(gp.gameState == gp.deathState){
+        deathState(code);
+        }
 
     }
 
@@ -68,8 +71,10 @@ public class KeyHandler implements KeyListener {
         if(code == KeyEvent.VK_ENTER){
             if(gp.ui.commandNum == 0){
                 //This will start the game
+                gp.restart();
                 gp.gameState = gp.playState;
                 gp.playMusic(0);
+
             }
             if(gp.ui.commandNum == 1){
                 //Add load functionality later
@@ -122,7 +127,10 @@ public class KeyHandler implements KeyListener {
             }
         }
         if(code == KeyEvent.VK_U){
-            gp.tileM.loadMap("/maps/worldV2.txt");
+            switch (gp.currentMap){
+                case 0:gp.tileM.loadMap("/maps/worldV2.txt",0); break;
+            }
+
         }
     }
     public void pauseState(int code){
@@ -219,6 +227,9 @@ public class KeyHandler implements KeyListener {
             }
         }
 
+
+    }
+    public void deathState(int e){
 
     }
 

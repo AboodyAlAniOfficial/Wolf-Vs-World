@@ -45,6 +45,7 @@ public class Entity {
     int hpBarCounter = 0;
     //cooldown between shots
     public int shotCounter = 0;
+    public int deathScreenCounter = 0;
 
     //CHARACTER STATS
     public int maxLife;
