@@ -16,5 +16,6 @@ public class OBJ_Axe extends Entity {
         attackArea.height = 24;
         down1 = setup("/objects/boots", gp.tileSize, gp.tileSize);
         description = "[" + name+"]\nFor cutting lumber";
+        value = 10;
     }
 }

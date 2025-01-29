@@ -16,8 +16,6 @@ public class Player extends Entity{
     public final  int screenX;
     public final int screenY;
     public boolean attackCancelled = false;
-    public ArrayList<Entity> inventory = new ArrayList<>();
-    public final int maxInventorySize = 20;
 
 
 //    public int hasKey = 0;
@@ -91,7 +89,7 @@ public class Player extends Entity{
         level = 1;
         exp = 0;
         nextLvlExp = 5;
-        coin = 0;
+        coin = 100;
         currentWeapon = new OBJ_Axe(gp);
         projectile = new OBJ_Shuriken(gp);
         att = getAttack();//The total attack will be level * weapon dmg
@@ -375,7 +373,7 @@ public class Player extends Entity{
     }
 
     public void selectItem(){
-        int i = gp.ui.getItemIndexOnSlot();
+        int i = gp.ui.getItemIndexOnSlot(gp.ui.playerSlotCol, gp.ui.playerSlotRow);
 
         if(i < inventory.size()){
             Entity selected = inventory.get(i);
