@@ -7,6 +7,7 @@ import object.OBJ_Potion;
 
 public class NPC_Merchant extends Entity{
 
+    int x;
     public NPC_Merchant(GamePanel gp){
         //Once again, this is so the Entity class can recieve gp
         super(gp);
